@@ -1,0 +1,5 @@
+# This file is to avoid git addition of artifacts from IDE or build 
+# or anything not really important for experiment reproducibility
+
+# PyCharm IDE Artifacts:
+.idea/*
