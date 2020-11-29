@@ -9,7 +9,7 @@ then
     exit 1
 fi
 # Make sure python version is >= 3.7
-parsedVersion=$(echo "${version//./}")
+parsedVersion="${version//./}"
 if [[ "$parsedVersion" -lt "370" ]]
 then
     echo "Invalid version"
@@ -18,10 +18,10 @@ fi
 
 # Define paths to dataset files
 trainFile="data/V1.4_Training.csv"
-valFile="SubtaskA_Trial_Test.csv"
-valFileLabelled="SubtaskA_Trial_Test_Labeled.csv"
-testFile="data/SubtaskA_EvaluationData.csv"
-testFileLabelled="data/SubtaskA_EvaluationData_labeled.csv"
+valFile="data/SubtaskA_EvaluationData.csv"
+valFileLabelled="data/SubtaskA_EvaluationData_labeled.csv"
+testFile="data/SubtaskA_Trial_Test.csv"
+testFileLabelled="data/SubtaskA_Trial_Test_Labeled.csv"
 
 # Run basic experiment
 # Train
@@ -31,5 +31,11 @@ python basic/test.py generated/decisions-list.txt $testFile > generated/system-a
 # Evaluate
 python basic/eval.py $testFileLabelled generated/system-answers.txt > results/basic-results.txt
 
+# Config related to advanced approach
+modelExportDir="generated/model/"
 
-# TODO: Add advanced approach commands below
+# Run advanced experiment
+# Train
+python advanced/train.py $trainFile $valFileLabelled $modelExportDir
+# TODO: Test
+# TODO: Eval

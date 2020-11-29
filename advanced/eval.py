@@ -8,15 +8,15 @@ and prints each review's gold and predicted values.
 
 This program can be executed using python version 3.7 in the following way at terminal:
 
-python eval.py gold.txt system-answers.txt > basic-results.txt
+python eval.py gold.txt system-answers.txt > advanced-results.txt
 
 Where,
 eval.py: the filename of the following complete code
 gold.txt: name of file containing gold standard labels (review class)
 system-answers.txt: name of file containing predicted classes
-> basic-results.txt: Piped output to a txt file to which results will be dumped
+> advanced-results.txt: Piped output to a txt file to which results will be dumped
 
-The program will then generate a file (basic-results.txt) containing results in following example:
+The program will then generate a file (advanced-results.txt) containing results in following example:
 
 Summary: Accuracy: 0.61, Precision: 0.6195652173913043, Recall: 0.57, F1: 0.59375
 

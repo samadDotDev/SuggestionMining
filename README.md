@@ -5,9 +5,16 @@ The goal of the task is to mine explicit suggestions (requiring least context) f
 
 ## Approaches
 ### Basic
-Decisions lists using Trigram features are used for our basic approach to this problem. It performs better (F-1: 0.418) 
-than SemEval-19 participating team `UOL Artificial Intelligence Research Group (Ahmed et al., 2019)` (F-1: 0.3237)
-and baseline (F-1: 0.268).
+Decisions lists using Trigram features are used for our basic approach to this problem. It performs better 
+(F-1: **0.599** on `testData`, **0.418** on `evaluationData`) 
+than SemEval-19 participating teams: 
+- `Taurus (Oostdijk and Halteren, 2019)` (F-1: 0.5845),
+- `YNU DYX (Ding et al., 2019)` (F-1: 0.5659),
+- `INRIA (Markov and De la Clergerie, 2019)` (F-1: 0.5118),
+- `SSN-SPARKS (S et al., 2019)` (F-1: 0.494),
+- `DBMS-KU (Fatyanosa et al., 2019)` (F-1: 0.473),
+- `UOL Artificial Intelligence Research Group (Ahmed et al., 2019)` (F-1: 0.3237),
+- and baseline (F-1: 0.268).
 
 ### Advanced
 Our advanced approach uses Transfer Learning, utilizing pre-trained BERT model for feature extraction and internal

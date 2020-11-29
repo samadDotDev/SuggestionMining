@@ -3,7 +3,7 @@ id,sentence,label
 1312_1,somewhere between Android and iPhone.,0
 1313_1,And in the Windows Store you can flag the App [Requires Trust] for example.,0
 1313_2,"Many thanks Sameh Hi, As we know, there is a lot of limitations is WP8 OS due the high security in the OS itself which is very good, but some time we need to allow some apps to do extra works, apps which we trust i.e: hotmail app, facebook app, skype app ....",0
-1313_3,"The idea is that we can develop a regular app and we request our permissions in the manifest, OR the app can ASK FOR TRUST_Ê_ more",1
+1313_3,"The idea is that we can develop a regular app and we request our permissions in the manifest, OR the app can ASK FOR TRUST_ÔøΩ_ more",1
 1316_1,Please add this simple and extremely helpful feature.,1
 1318_2,Why not let us have several pages that we can put tiles on and name whatever we want to .,1
 1319_1,The Idea is if user running our app and by any reason he rebooted the phone so in that case once reboot happen there should be some event so that we can detect that phone is rebooted and we can handle our application accordingly,1
@@ -38,7 +38,7 @@ id,sentence,label
 1330_16,"In some cases missing answer key after unlock, when phone is locked, also missing call alert network enable/disable (network code is *#43# for verify, *43# for enable and #43# for disable).",0
 1330_24,What I am asking for is some key that will act like the Screenshot->Capture command without me having to change tabs in the Emulator window or release the Accelerometer.,1
 1330_25,Even something as simple as ctrl+S would be a godsend for me.,1
-1331_1,"If I am lucky I can do it before my character dies, even then though the player is just moving in a straight line to nowhere_Ê_ more",1
+1331_1,"If I am lucky I can do it before my character dies, even then though the player is just moving in a straight line to nowhere_ÔøΩ_ more",1
 1332_1,"Please allow users to view ""comments"" in office docs i.e word, ppt, excel....also allow user to add comments on these docs",1
 1335_1,Provide a single link to retrieve all the applications by a specific Publisher like the Android Market.,1
 1336_2,Please show the scrollbars in the WebBrowser control.,1
@@ -88,8 +88,8 @@ id,sentence,label
 1369_2,"Barring that, at least allow for merged listings for WP7 and WP8 versions so that customers have a clear upgrade path for the same application.",1
 1370_1,"Or, you could just support the native SDK/Direct X on WP7.",1
 1371_1,I'll take that over the previous two.,0
-1372_1,"Barring that, at least allow for merged listings for WP7 and WP8 versions so that customers have a clear upgrade path for_Ê_ more",1
-1373_1,The concept explains itself well in below blogpost: WinRT Transitions _Ê_ Creating Fast and Fluid Metro UIs http://www.scottlogic.co.uk/blog/colin/2011/10/winrt-transitions-creating-fast-and-fluid-metro-uis/,0
+1372_1,"Barring that, at least allow for merged listings for WP7 and WP8 versions so that customers have a clear upgrade path for_ÔøΩ_ more",1
+1373_1,The concept explains itself well in below blogpost: WinRT Transitions _ÔøΩ_ Creating Fast and Fluid Metro UIs http://www.scottlogic.co.uk/blog/colin/2011/10/winrt-transitions-creating-fast-and-fluid-metro-uis/,0
 1374_1,Using Vodafone GSM and the used data includes Unicode characters thus whole message is failed.,0
 1374_2,"i could imagine, that in the same way the sms-icon is shown on the lockscreen, a 'mini app icon' is shown aswell, from apps that got notifications (facebbok, whatsapp....)",0
 1375_1,"Add an option to delete future appointment in Calendar and preserve previous, when used the option to repeat",1
@@ -102,7 +102,7 @@ id,sentence,label
 1380_14,"These descriptions also appear differently depending on where they are being viewed (web, zune on PC or device).",0
 1380_15,"The Update Description field has a documented purpose, but then in the forums I read that this field does not appear in the Marketplace.",0
 1380_16,Please provide a way to 1) predictably introduce newlines into the description fields 2) let me see how these fields will render in the different environments (WYSIWYG) 3) show me how the Update Description will be used in my updated app There does not seem to be a way to control newlines in the application descriptions on the Marketplace.,0
-1380_17,Please provide a way to 1) predictably introduce newlines into the description fields 2) let me see how these fields will render in the different environments (WYSIWYG) 3) show me how the Update Description will be used in my updated_Ê_ more,1
+1380_17,Please provide a way to 1) predictably introduce newlines into the description fields 2) let me see how these fields will render in the different environments (WYSIWYG) 3) show me how the Update Description will be used in my updated_ÔøΩ_ more,1
 1381_1,Quicker way to go to the bottom of the metro screen to view tons of pined apps.,0
 1381_2,I currently develop for Android and iOS.,0
 1381_3,"I am interested in developing for Windows Phone, but would need a device, to pay registration and learn a 3rd platform to do so.",0
@@ -147,7 +147,7 @@ id,sentence,label
 1408_2,"That would really make LiveTiles 'Live' which now, they kind of aren't and were by *far* the biggest disappointment when we saw the actual SDK.",0
 1409_1,"Coming from iOS, when we did see that, we scrapped two apps we were going to release on WP7.",0
 1409_2,"(A third was scrapped because of the inability to do location tracking in a background task more frequently than once every 30 minutes, which is sort of the same 'stale data' issue as here.)",0
-1409_3,"Since it's user-initiated, it wouldn't drain_Ê_ more",0
+1409_3,"Since it's user-initiated, it wouldn't drain_ÔøΩ_ more",0
 1409_4,"In the Schedule Namespace ist isn't possible to have access to the Media Library to play Songs, User has already on his Device -> Please add this function to get access to the Media Library.",1
 1411_1,"Another thing is, to have the possibility to modify the Notification, wich is shown, when the Alarm or Reminder Rings.",1
 1413_1,"We need to open our Application, or to overwrite the notify to costumize it to get a better improvement for the user.",0
@@ -198,7 +198,7 @@ id,sentence,label
 1443_5," When everything is finished, you can click Start button to start the video to FLV conversion process.",0
 1443_6,You are allowed to preview the converting process in slideshow.,0
 1443_7,"As 99% computer owners have installed flash plugin in web browser, so it's naturally that FLV or SWF flash videos are more acceptable than popular videos formats, such as MP4, AVI, MPEG or ect.",0
-1443_8,"If you convert video to FLV flash video, which features much smaller size than_Ê_ more",0
+1443_8,"If you convert video to FLV flash video, which features much smaller size than_ÔøΩ_ more",0
 1443_9,Allow the BackgroundAudioPlayer to play tracks from the MediaLibrary.,1
 1443_10,Or allow applications that implement the XNA MediaPlayer class to run in the background.,1
 1444_2,"Please add the possibility to add your own spell check service, or provide the data if a system wide one existed.",1
@@ -240,7 +240,7 @@ id,sentence,label
 1477_1,"Additionally, it would be great to have additional support for Enterprise developers that target a specific set of clients as opposed to the public masses of the Marketplace.",1
 1477_2,"First, an Enterprise Developer account could be established with a cost of, say $499, which is high enough to deter hobbyists or smaller companies from enrolling, while at the same time providing additional benefits to larger ""enterprise-level"" corporations.",1
 1479_2,"Ideally, a mini storefront or splash page for the company and product would help draw in clients.",1
-1479_5,"Allowing for tester groups or ""profiles"" would allow for efficient test setup in the Marketplace, especially_Ê_ more",1
+1479_5,"Allowing for tester groups or ""profiles"" would allow for efficient test setup in the Marketplace, especially_ÔøΩ_ more",1
 1479_6,"If the app shows sensitive data when deativated, it would be good to be able to use a different image for fast app switching instead of a screenshot of the application",1
 1479_7,"Daemon service should be turnable on and off per app basis, in the same way like periodic tasks.",1
 1481_2,Microsoft should advertise windows phone development APIs in Visual Studio,1
@@ -341,7 +341,7 @@ id,sentence,label
 1558_7,Allow the BackgorundAudioAgent to utilise the XNA framework so that the device's song library can be played and manipulated from the background.,1
 1558_8,You would also need to provide a conversion mechanism to convert a Song to an AudioTrack - as is the default file type for the BAP.,1
 1558_9,Relax the restrictions around application running under a locked screen and/or in the background.,1
-1558_13,Unless of course we go with a predetermined SongCollection such as SongCollection limitedPlaylist =_Ê_ more,0
+1558_13,Unless of course we go with a predetermined SongCollection such as SongCollection limitedPlaylist =_ÔøΩ_ more,0
 1558_15,We need the ability to build apps that are capable of video editing for WP!,1
 1559_1,"Please DevGroup make this APIs should enable developers to build apps that include the ability to do video trimming, editing, and saving to the video library.",1
 1559_2,This is needed to build VoIP application.,0
@@ -412,7 +412,7 @@ id,sentence,label
 1600_12,"I, for example, wrote four applications in about two days.",0
 1600_13,Getting them all published took me over three months.,0
 1602_1,It's just not right.,0
-1603_1,The process (particularly for someone under the age of 18) of getting a Dreamspark account (particularly now that you've messed up that website) and an App Hub account is absolutely awful._Ê_ more,0
+1603_1,The process (particularly for someone under the age of 18) of getting a Dreamspark account (particularly now that you've messed up that website) and an App Hub account is absolutely awful._ÔøΩ_ more,0
 1603_2,windows phone dev is powerless without low level api to access drivers or add features to phone,0
 1603_3,I have developed an app which plays audio using the BackgroundAudioPlayer.,0
 1603_4,"If I am listening to audio over Bluetooth and I pause the audio, if the Bluetooth device disconnects, the audio resumes playing.",0
@@ -487,7 +487,7 @@ id,sentence,label
 1624_2,the mutitasking area should have every app that you have opened in it.,1
 1625_1,The last five should be frozen and any more than that should have to restarted.,1
 1625_2,To close an app the user should be able to use her/his finger to flick it upwards WebOS style.,1
-1625_4,"In addition, the user should be able to take a screenshot within the multitasking area by using a finger gesture to drag the app towarda the bottom of the screen, a screen capture icon should appear and the outer edges of the icon should fill with green and onve the edges are_Ê_ more",1
+1625_4,"In addition, the user should be able to take a screenshot within the multitasking area by using a finger gesture to drag the app towarda the bottom of the screen, a screen capture icon should appear and the outer edges of the icon should fill with green and onve the edges are_ÔøΩ_ more",1
 1625_5,It will be very useful if you can asign a static IP,1
 1625_6,IPv6 begins to be widely supported.,0
 1625_7,It was available in WM6.5 (and older) so it would be great to see this included in WP7 (and later),0
@@ -530,7 +530,7 @@ id,sentence,label
 1631_1,it is slightly fustrating when one or two screenshots take longer to load and you cannot skip them while swiping through the images.,0
 1632_1,Like windows mobile 6.5 and older version.,0
 1632_2,"Currently, you can only have the review page from the app list with the contextual menu.",0
-1633_1,"It will be pleasant to go the main page of the app in the marketplace to see the general prê©sentation, screenshots & the other users reviews",1
+1633_1,"It will be pleasant to go the main page of the app in the marketplace to see the general prÔøΩÔøΩsentation, screenshots & the other users reviews",1
 1633_2,add capability to enter manual parametets for visual voicemail,1
 1633_3,currently in the all applications view tge jumplist appears only when there are more than 40 apps.,0
 1633_4,i have about 30 apps and it is already difficult to find an app ...i think the jumplist shuld be always available.,1

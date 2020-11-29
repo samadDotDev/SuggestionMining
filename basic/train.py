@@ -157,6 +157,7 @@ def pre_process_input(file_name):
             # a. Parse file to a list of Review objects for easier access
 
             # Split line in following pattern:
+            # TODO: Handle reviews with _ in their identifiers, group them for same id before _
             # <Review Number possibly with underscore> <,"""> <Review Text> <""",> <Class: 0 or 1>
             line_split = re.match(r'^([0-9_]*),"""(.*)""",([01])$', line)
 
