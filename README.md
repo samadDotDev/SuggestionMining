@@ -23,11 +23,22 @@ representation learning. More details of the model to be added here.
 ## Build
 
 ### Pre-Requisites
-`bash` terminal with python 3.7 available in active environment.
+`bash` terminal with python 3.7 available in active environment. 
+A cleaner approach would be to install dependencies in a virtual environment such as conda. 
+```bash
+conda create --name suggestionMining python=3.7  # Create a env with python 3.7
+conda activate suggestionMining # Activate the environment
+```
 
 ### Install
-`bash INSTALL.sh` installs all required dependencies/packages for this code.
+The following command installs all required dependencies/packages for this code.
+```
+bash INSTALL.sh
+```
 
 ### Experiment
-`bash EXPERIMENT.sh` runs the experiment on task's official data-set and reproduces same results 
+The following command runs the experiment on task's official data-set and reproduces same results 
 as mentioned here or in paper.
+```bash
+bash EXPERIMENT.sh
+```

@@ -137,7 +137,7 @@ def retrain_model(model, dataset):
     # TODO: Grid search on optimizing these arguments
     # TODO: May take few arguments from cmdline
     training_args = TrainingArguments(
-        output_dir='results',  # output directory
+        output_dir='generated',  # intermediate outputs (such as training checkpoints) directory
         num_train_epochs=3,  # total number of training epochs
         per_device_train_batch_size=16,  # batch size per device during training
         per_device_eval_batch_size=64,  # batch size for evaluation
@@ -146,10 +146,13 @@ def retrain_model(model, dataset):
         logging_dir='logs',  # directory for storing logs
         logging_steps=10,
     )
-    trainer = Trainer(model=model, args=training_args,
-                      train_dataset=dataset['Train'], eval_dataset=dataset['Validation'])
 
     # TODO: Freeze initial layers before training
+    """for param in model.base_model.parameters():
+        param.requires_grad = False"""
+
+    trainer = Trainer(model=model, args=training_args,
+                      train_dataset=dataset['Train'], eval_dataset=dataset['Validation'])
 
     # Refine the model on training set
     trainer.train()
