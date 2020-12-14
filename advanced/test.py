@@ -49,25 +49,25 @@ class ReviewsTestDataset(torch.utils.data.Dataset):
 
 # 1. Read CmdLine Arguments for file names (model and test) and validate they exists
 def parse_cmd_line_args():
-    # first arg is this file's name, second and third are model and test files
+    # first arg is this file's name, second and third are model dir and test files
     if len(sys.argv) < 3:
         print("Model and test data file names are required")
         exit(0)
 
-    model_file = sys.argv[1]
+    model_dir = sys.argv[1]
     test_file = sys.argv[2]
 
     # Make sure both files exists
 
-    if not os.path.isfile(model_file):
-        print(f"File {model_file} doesn't exist")
+    if not os.path.isdir(model_dir):
+        print(f"Directory {model_dir} doesn't exist")
         exit(0)
 
-    if not os.path.isdir(test_file):
-        print(f"Directory {test_file} doesn't exist")
+    if not os.path.isfile(test_file):
+        print(f"File {test_file} doesn't exist")
         exit(0)
 
-    return model_file, test_file
+    return model_dir, test_file
 
 
 # 2. Read both files and predict sentiments for test file
