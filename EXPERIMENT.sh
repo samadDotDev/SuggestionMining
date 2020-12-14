@@ -41,3 +41,7 @@ python advanced/train.py $trainFile $valFileLabelled $modelExportDir
 python advanced/test.py $modelExportDir $testFile > generated/advanced-system-answers.txt
 # Evaluate
 python advanced/eval.py $testFileLabelled generated/advanced-system-answers.txt > results/advanced-results.txt
+
+# Print a summary
+printf "Basic " && head -1 results/basic-results.txt
+printf "Advanced " && head -1 results/advanced-results.txt
