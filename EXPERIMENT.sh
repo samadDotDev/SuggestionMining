@@ -27,9 +27,9 @@ testFileLabelled="data/SubtaskA_Trial_Test_Labeled.csv"
 # Train
 python basic/train.py $trainFile > generated/decisions-list.txt
 # Test
-python basic/test.py generated/decisions-list.txt $testFile > generated/system-answers.txt
+python basic/test.py generated/decisions-list.txt $testFile > generated/basic-system-answers.txt
 # Evaluate
-python basic/eval.py $testFileLabelled generated/system-answers.txt > results/basic-results.txt
+python basic/eval.py $testFileLabelled generated/basic-system-answers.txt > results/basic-results.txt
 
 # Config related to advanced approach
 modelExportDir="generated/model/"
@@ -37,5 +37,7 @@ modelExportDir="generated/model/"
 # Run advanced experiment
 # Train
 python advanced/train.py $trainFile $valFileLabelled $modelExportDir
-# TODO: Test
-# TODO: Eval
+# Test
+python advanced/test.py $modelExportDir $testFile > generated/advanced-system-answers.txt
+# Evaluate
+python advanced/eval.py $testFileLabelled generated/advanced-system-answers.txt > results/advanced-results.txt
