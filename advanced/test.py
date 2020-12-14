@@ -63,8 +63,8 @@ def parse_cmd_line_args():
         print(f"File {model_file} doesn't exist")
         exit(0)
 
-    if not os.path.isfile(test_file):
-        print(f"File {test_file} doesn't exist")
+    if not os.path.isdir(test_file):
+        print(f"Directory {test_file} doesn't exist")
         exit(0)
 
     return model_file, test_file
