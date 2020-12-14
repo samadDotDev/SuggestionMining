@@ -23,24 +23,31 @@ valFileLabelled="data/SubtaskA_EvaluationData_labeled.csv"
 testFile="data/SubtaskA_Trial_Test.csv"
 testFileLabelled="data/SubtaskA_Trial_Test_Labeled.csv"
 
+# Config related to basic approach
+decisionsListFile="generated/decisions-list.txt"
+basicSystemAnswersFile="generated/basic-system-answers.txt"
+basicResultsFile="results/basic-results.txt"
+
 # Run basic experiment
 # Train
-python basic/train.py $trainFile > generated/decisions-list.txt
+python basic/train.py $trainFile > $decisionsListFile
 # Test
-python basic/test.py generated/decisions-list.txt $testFile > generated/basic-system-answers.txt
+python basic/test.py $decisionsListFile $testFile > $basicSystemAnswersFile
 # Evaluate
-python basic/eval.py $testFileLabelled generated/basic-system-answers.txt > results/basic-results.txt
+python basic/eval.py $testFileLabelled $basicSystemAnswersFile > $basicResultsFile
 
 # Config related to advanced approach
 modelExportDir="generated/model/"
+advancedSystemAnswersFile="generated/advanced-system-answers.txt"
+advancedResultsFile="results/advanced-results.txt"
 
 # Run advanced experiment
 # Train
 python advanced/train.py $trainFile $valFileLabelled $modelExportDir
 # Test
-python advanced/test.py $modelExportDir $testFile > generated/advanced-system-answers.txt
+python advanced/test.py $modelExportDir $testFile > $advancedSystemAnswersFile
 # Evaluate
-python advanced/eval.py $testFileLabelled generated/advanced-system-answers.txt > results/advanced-results.txt
+python advanced/eval.py $testFileLabelled $advancedSystemAnswersFile > $advancedResultsFile
 
 # Print a summary
 printf "Basic " && head -1 results/basic-results.txt

@@ -31,6 +31,10 @@ import torch
 from transformers import BertForSequenceClassification, BertTokenizerFast, Trainer, TrainingArguments
 
 
+# Set a global set for training reproducibility
+torch.manual_seed(0)
+
+
 # The following data-set class and required format is taken from
 # HuggingFace Transformers documentation (Fine-tuning with custom datasets)
 # https://huggingface.co/transformers/custom_datasets.html (Accessed Nov 20, 2020)
