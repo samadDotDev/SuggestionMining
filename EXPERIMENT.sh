@@ -50,5 +50,5 @@ python advanced/test.py $modelExportDir $testFile > $advancedSystemAnswersFile
 python advanced/eval.py $testFileLabelled $advancedSystemAnswersFile > $advancedResultsFile
 
 # Print a summary
-printf "Basic " && head -1 results/basic-results.txt
-printf "Advanced " && head -1 results/advanced-results.txt
+printf "Basic " && head -1 $basicResultsFile
+printf "Advanced " && head -1 $advancedResultsFile

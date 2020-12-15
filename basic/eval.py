@@ -50,6 +50,10 @@ import os.path
 import re
 
 
+# By default print a descriptive summary with analysis for each system answer
+print_f1_score_only = False
+
+
 # 1. Read CmdLine Arguments for file names (gold and system answers) and validate they exists
 def parse_cmd_line_args():
 
@@ -70,6 +74,11 @@ def parse_cmd_line_args():
     if not os.path.isfile(system_answers_file):
         print(f"File {system_answers_file} doesn't exist")
         exit(0)
+
+    # An optional argument to control whether we print a descriptive summary of results or just f1 score
+    global print_f1_score_only
+    if len(sys.argv) >= 4:
+        print_f1_score_only = bool(sys.argv[3])
 
     return gold_file, system_answers_file
 
@@ -146,17 +155,20 @@ def calculate_stats_and_export_results(results):
     FN = results["FN"]
     review_answers = results["review_answers"]
 
-    accuracy = (TP + TN) / (TP + TN + FP + FN)
-    precision = TP / (TP + FP)
-    recall = TP / (TP + FN)
-    f1 = 2 * ((precision * recall) / (precision + recall))
+    accuracy = (TP + TN) / (TP + TN + FP + FN) if (TP + TN + FP + FN) > 0 else "N/A"
+    precision = (TP / (TP + FP)) if (TP + FP) > 0 else "N/A"
+    recall = TP / (TP + FN) if (TP + FN) > 0 else "N/A"
+    f1 = 2 * ((precision * recall) / (precision + recall)) if (precision != "N/A" and recall != "N/A") else "N/A"
 
-    print("Summary:", f"Accuracy: {accuracy}, Precision: {precision}, Recall: {recall}, F1: {f1}")
-    print("\n\nClassification Answers Comparison:\n")
-    print("Review_Identifier", "|", "Gold", "|", "Prediction")
+    if print_f1_score_only:
+        print(f1)
+    else:
+        print("Summary:", f"Accuracy: {accuracy}, Precision: {precision}, Recall: {recall}, F1: {f1}")
+        print("\n\nClassification Answers Comparison:\n")
+        print("Review_Identifier", "|", "Gold", "|", "Prediction")
 
-    for answer in review_answers:
-        print(answer[0], "|", answer[1], "|", answer[2])
+        for answer in review_answers:
+            print(answer[0], "|", answer[1], "|", answer[2])
 
 
 # Program's Entry Point

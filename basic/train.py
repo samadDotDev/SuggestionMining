@@ -50,16 +50,25 @@ import re
 import math
 
 
-# Global Config for program
+# Global Config for program (Defaults, could be modified by cmdline args)
 
 add_one_smoothing = True  # add 1 smoothing for probabilities calculation
 
+# Whether NOT_ should be appended to words later than a not or a similar contraction
+# (didn't ..) in a sentence
+not_feature_enabled = True
+
 # Following if true turns "not in a no good way" to "not NOT_in NOT_a NOT_no good way"
 # Otherwise if false, turns it into "not NOT_in NOT_a NOT_no NOT_good NOT_way"
-double_negation_turns_positive = True  # Either way, doesn't change performance on given data
+double_negation_turns_positive = True and not_feature_enabled  # Either way, doesn't change performance on given data
 
 # Min # of occurrence of a feature in whole training dataset to be considered for decision list
 minimum_frequency_of_feature = 2
+
+# configuration for n-gram models to be used for decisions list
+# "3" means only trigram will be used, "123" specifies that unigram, bigram and trigram combined should be used
+# The config can contain 1,2,3,4 or any combinations of these without any order sensitivity
+n_gram_config = "3"
 
 
 # Class for abstraction of review data type
@@ -87,6 +96,20 @@ def parse_cmd_line_args():
     if not os.path.isfile(input_file_name):
         print(f"File {input_file_name} doesn't exist")
         exit(0)
+
+    # Following configuration is optional to be supplied,
+    # otherwise program defaults listed in global program config above will be used
+
+    global n_gram_config, minimum_frequency_of_feature, not_feature_enabled
+
+    if len(sys.argv) >= 3:
+        n_gram_config = sys.argv[2]
+
+    if len(sys.argv) >= 4:
+        minimum_frequency_of_feature = int(sys.argv[3])
+
+    if len(sys.argv) >= 5:
+        not_feature_enabled = bool(sys.argv[4])
 
     return input_file_name
 
@@ -126,11 +149,12 @@ def split_into_sentences_and_preprocess(text):
     # Split a sentence by a punctuation (,.!?;) possibly after and before a space (or may not)
     sentences = re.split(r'\s?\.\s?|\s?,\s?|\s?;\s?|\s?!\s?|\s?\?\s?|\s?\n', text)
 
-    # TODO: Take cmdline arg whether to associate NOT
-
     # Remove any blank sentences (occurs after split if a punctuation is right before line break)
-    # Also, associate NOT_ with words after negation in sentence if present
-    sentences = [associate_not(s) for s in sentences if s != ""]
+    sentences = [s for s in sentences if s != ""]
+
+    # associate NOT_ with words after negation in sentence if present, and if this feature is enabled
+    if not_feature_enabled:
+        sentences = [associate_not(s) for s in sentences]
 
     return sentences
 
@@ -204,81 +228,81 @@ def extract_features(reviews):
             tokens_len = len(tokens)
             for token_i in range(tokens_len):
 
-                # TODO: Take a set of cmdline args to specify what n-grams to run
+                # UNI-GRAMS, if enabled
+                if "1" in n_gram_config:
 
-                """
-                # Unigram model hurts a lot
+                    unigram = tokens[token_i]
 
-                unigram = tokens[token_i]
-                
-                # Increment class and total counts of Unigram if it exists in hashmap
-                if unigram in features["unigrams"]:
-                    # int(review.classification) makes sure to increment count of class1 only if this review is class 1
-                    features["unigrams"][unigram]["class1"] += int(review.classification)
-                    features["unigrams"][unigram]["total"] += 1
-                
-                else:
-                    # Otherwise add unigram to hashmap if it doesn't exist
-                    features["unigrams"][unigram] = {"class1": int(review.classification), "total": 1}
-                
-                
-                
-                # Make sure we don't go over the last element in list when making combinations for bigrams
-                if token_i < tokens_len - 1:
-                    
-                    # Concantenate this and next token to make it bigram
-                    bigram = (tokens[token_i]) + " " + str(tokens[token_i + 1])
-
-                    # Increment class and total counts of bigram if it exists in hashmap
-                    if bigram in features["bigrams"]:
-                        features["bigrams"][bigram]["class1"] += int(review.classification)
-                        features["bigrams"][bigram]["total"] += 1
+                    # Increment class and total counts of Unigram if it exists in hashmap
+                    if unigram in features["unigrams"]:
+                        # int(review.classification) makes sure to increment count of class1 only if this review is class 1
+                        features["unigrams"][unigram]["class1"] += int(review.classification)
+                        features["unigrams"][unigram]["total"] += 1
 
                     else:
-                        # Otherwise add bigram to hashmap if it doesn't exist
-                        features["bigrams"][bigram] = {"class1": int(review.classification), "total": 1}
-                
-                """
+                        # Otherwise add unigram to hashmap if it doesn't exist
+                        features["unigrams"][unigram] = {"class1": int(review.classification), "total": 1}
 
-                # Make sure we don't go over the last element in list when making combinations for bigrams
-                if token_i < tokens_len - 2:
+                # BI-GRAMS, if enabled
+                if "2" in n_gram_config:
 
-                    # Concantenate this and next token to make it trigram
-                    trigram = (tokens[token_i]) + " " + str(tokens[token_i + 1]) + " " + str(tokens[token_i + 2])
+                    # Make sure we don't go over the last element in list when making combinations for bigrams
+                    if token_i < tokens_len - 1:
 
-                    # Increment class and total counts of trigram if it exists in hashmap
-                    if trigram in features["trigrams"]:
-                        features["trigrams"][trigram]["class1"] += int(review.classification)
-                        features["trigrams"][trigram]["total"] += 1
+                        # Concantenate this and next token to make it bigram
+                        bigram = (tokens[token_i]) + " " + str(tokens[token_i + 1])
 
-                    else:
-                        # Otherwise add trigram to hashmap if it doesn't exist
-                        features["trigrams"][trigram] = {"class1": int(review.classification), "total": 1}
+                        # Increment class and total counts of bigram if it exists in hashmap
+                        if bigram in features["bigrams"]:
+                            features["bigrams"][bigram]["class1"] += int(review.classification)
+                            features["bigrams"][bigram]["total"] += 1
 
-                """
+                        else:
+                            # Otherwise add bigram to hashmap if it doesn't exist
+                            features["bigrams"][bigram] = {"class1": int(review.classification), "total": 1}
 
-                # Make sure we don't go over the last element in list when making combinations for bigrams
-                if token_i < tokens_len - 3:
+                # TRI-GRAMS, if enabled
+                if "3" in n_gram_config:
 
-                    # Concantenate this and next token to make it fourgram
-                    fourgram = (tokens[token_i]) + " " + str(tokens[token_i + 1]) + " " + str(tokens[token_i + 2])\
-                              + " " + str(tokens[token_i + 3])
+                    # Make sure we don't go over the last element in list when making combinations for trigrams
+                    if token_i < tokens_len - 2:
 
-                    # Increment class and total counts of fourgram if it exists in hashmap
-                    if fourgram in features["fourgrams"]:
-                        features["fourgrams"][fourgram]["class1"] += int(review.classification)
-                        features["fourgrams"][fourgram]["total"] += 1
+                        # Concantenate this and next token to make it trigram
+                        trigram = (tokens[token_i]) + " " + str(tokens[token_i + 1]) + " " + str(tokens[token_i + 2])
 
-                    else:
-                        # Otherwise add fourgram to hashmap if it doesn't exist
-                        features["fourgrams"][fourgram] = {"class1": int(review.classification), "total": 1}
-                        
-                """
+                        # Increment class and total counts of trigram if it exists in hashmap
+                        if trigram in features["trigrams"]:
+                            features["trigrams"][trigram]["class1"] += int(review.classification)
+                            features["trigrams"][trigram]["total"] += 1
+
+                        else:
+                            # Otherwise add trigram to hashmap if it doesn't exist
+                            features["trigrams"][trigram] = {"class1": int(review.classification), "total": 1}
+
+                # 4-GRAMS, if enabled
+                if "4" in n_gram_config:
+
+                    # Make sure we don't go over the last element in list when making combinations for 4-grams
+                    if token_i < tokens_len - 3:
+
+                        # Concantenate this and next token to make it fourgram
+                        fourgram = (tokens[token_i]) + " " + str(tokens[token_i + 1]) + " " + str(tokens[token_i + 2])\
+                                  + " " + str(tokens[token_i + 3])
+
+                        # Increment class and total counts of fourgram if it exists in hashmap
+                        if fourgram in features["fourgrams"]:
+                            features["fourgrams"][fourgram]["class1"] += int(review.classification)
+                            features["fourgrams"][fourgram]["total"] += 1
+
+                        else:
+                            # Otherwise add fourgram to hashmap if it doesn't exist
+                            features["fourgrams"][fourgram] = {"class1": int(review.classification), "total": 1}
 
     # This will return features in the following format:
     # unigrams: {the: {class1: 20, total: 40}, not: {class1: 0, total: 30}, ...},
     # bigrams: {"very bad": {class1: 0, total: 5}, ...}
     # trigrams: ...
+    # fourgrams: ...
     return features
 
 
