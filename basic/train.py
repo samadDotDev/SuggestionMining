@@ -63,12 +63,12 @@ not_feature_enabled = True
 double_negation_turns_positive = True and not_feature_enabled  # Either way, doesn't change performance on given data
 
 # Min # of occurrence of a feature in whole training dataset to be considered for decision list
-minimum_frequency_of_feature = 2
+minimum_frequency_of_feature = 1
 
 # configuration for n-gram models to be used for decisions list
 # "3" means only trigram will be used, "123" specifies that unigram, bigram and trigram combined should be used
 # The config can contain 1,2,3,4 or any combinations of these without any order sensitivity
-n_gram_config = "3"
+n_gram_config = "34"
 
 
 # Class for abstraction of review data type
