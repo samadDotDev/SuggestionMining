@@ -18,7 +18,10 @@ than SemEval-19 participating teams:
 
 ### Advanced
 Our advanced approach uses Transfer Learning, utilizing pre-trained BERT model for feature extraction and internal
-representation learning. More details of the model to be added here.
+representation learning. It performs better (F-1: 0.8448) than the best-performing team 
+`OleNet@Baidu (Jiaxiang et al., 2019)` on SubTask-A (F-1: 0.7812). We have re-trained the 
+[BertForSequenceClassification](https://huggingface.co/transformers/model_doc/bert.html#bertforsequenceclassification) 
+model for just 3 epochs without freezing weights in initial layers.
 
 ## Build
 
@@ -41,4 +44,14 @@ The following command runs the experiment on task's official data-set and reprod
 as mentioned here or in paper.
 ```bash
 bash EXPERIMENT.sh
+```
+
+#### Grid Search
+
+To find the optimum, an exhaustive grid-search is used. 
+For basic approach it can be executed via `BASIC_GRID_SEARCH.sh` bash script. 
+Following is an example of running such experiment and saving results to a CSV file:
+
+```bash
+bash BASIC_GRID_SEARCH.sh > results/basic_grid_search.csv
 ```

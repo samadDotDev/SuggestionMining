@@ -148,7 +148,7 @@ def calculate_stats_and_export_results(results):
 
     accuracy = (TP + TN) / (TP + TN + FP + FN) if (TP + TN + FP + FN) > 0 else "N/A"
     precision = (TP / (TP + FP)) if (TP + FP) > 0 else "N/A"
-    recall = TP / (TP + FN) if (TP + FN) > 0 else "N/A"
+    recall = (TP / (TP + FN)) if (TP + FN) > 0 else "N/A"
     f1 = 2 * ((precision * recall) / (precision + recall)) if (precision != "N/A" and recall != "N/A") else "N/A"
 
     print("Summary:", f"Accuracy: {accuracy}, Precision: {precision}, Recall: {recall}, F1: {f1}")
