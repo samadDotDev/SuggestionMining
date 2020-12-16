@@ -1,6 +1,6 @@
 """
 
-This program learns sentiment of a review based on features present in it.
+This program learns classification of a review as suggestion/non-suggestion based on features present in it.
 It calculates the likelihood of each feature by judging probability of each class
 given a feature in its review. It then generates a list of such features sorted in
 descending order by likelihood, called decision list.

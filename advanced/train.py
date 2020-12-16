@@ -1,21 +1,33 @@
 """
 
-This program learns ...
+This program trains a classifier that can be used to classify a sequence of text (from online reviews)
+as one of the two classes (suggestion or non-suggestion). It uses a pre-trained BERT_for_Sequence_classification
+model re-trained (fine-tuned) for this specific dataset and task.
 
 -------------------------------
 
 This program can be executed using python version 3.7 in the following way at terminal:
 
-...
+python train.py trainFileName valFileLabelledName modelExportDirName [freezeBertWeights] [epochs] [weightDecay]
 
 Where,
-...
+train.py: name of this file containing program's code
+trainFileName: filename containing labelled training dataset
+valFileLabelledName: filename containing labelled validation dataset
+modelExportDirName: directory name to which the fine-tuned model would be exported
+[freezeBertWeights]: Optional, True/False whether we should freeze bert model weights and train only classification layer
+[epochs]: Optional, number of training iterations/epochs
+[weightDecay]: Optional, strength of weight decay
 
 -------------------------------
 
 Overview of Program's Code:
 
-...
+1. Read CmdLine Arguments for training file name and validate it exists
+2. Load pre-trained model and tokenizer for transfer learning
+3. Read data-set files and pre-process them
+4. Refine pre-trained model using our own training dataset
+5. Export the refined model that can be used for testing later
 
 """
 
@@ -33,6 +45,18 @@ from transformers import BertForSequenceClassification, BertTokenizerFast, Train
 
 # Set a global set for training reproducibility
 torch.manual_seed(0)
+
+
+# Global config, to be modified by cmdline args
+
+# Should we freeze the bert model weights and keep only the classification layer weights as trainable?
+freeze_bert_weights = False
+
+# Number of iterations of training
+training_epochs = 3
+
+# Weight decay strength
+weight_decay = 0.01
 
 
 # The following data-set class and required format is taken from
@@ -76,6 +100,16 @@ def parse_cmd_line_args():
         if not os.path.isfile(file):
             print(f"File {file} doesn't exist")
             exit(0)
+
+    # Modify global config from cmdline args if supplied
+    global freeze_bert_weights, training_epochs, weight_decay
+
+    if len(sys.argv) >= 5:
+        freeze_bert_weights = bool(sys.argv[4])
+    if len(sys.argv) >= 6:
+        training_epochs = int(sys.argv[5])
+    if len(sys.argv) >= 7:
+        weight_decay = float(sys.argv[6])
 
     return train_file_name, val_file_name, model_dir
 
@@ -137,23 +171,28 @@ def pre_process_input(train_file, val_file, tokenizer):
 # 4. Refine pre-trained model using our own training dataset
 def retrain_model(model, dataset):
 
+    # Use global config, possibly modified by cmdline args
+    global freeze_bert_weights, training_epochs, weight_decay
+
     # Training Arguments
-    # TODO: Grid search on optimizing these arguments
-    # TODO: May take few arguments from cmdline
+    # Default parameters are selected from official trainer API's example for fine-tuning:
+    # https://huggingface.co/transformers/training.html#trainer (Accessed 16 Dec 2020)
     training_args = TrainingArguments(
         output_dir='generated',  # intermediate outputs (such as training checkpoints) directory
-        num_train_epochs=3,  # total number of training epochs
+        num_train_epochs=training_epochs,  # total number of training epochs
         per_device_train_batch_size=16,  # batch size per device during training
         per_device_eval_batch_size=64,  # batch size for evaluation
         warmup_steps=50,  # number of warmup steps for learning rate scheduler
-        weight_decay=0.01,  # strength of weight decay
+        weight_decay=weight_decay,  # strength of weight decay
         logging_dir='logs',  # directory for storing logs
         logging_steps=10,
     )
 
-    # TODO: Freeze initial layers before training
-    """for param in model.base_model.parameters():
-        param.requires_grad = False"""
+    # Freeze initial layers before training
+    # https://github.com/huggingface/transformers/issues/400#issuecomment-477110548 (Accessed 16 Dec 2020)
+    if freeze_bert_weights:
+        for param in model.bert.parameters():
+            param.requires_grad = False
 
     trainer = Trainer(model=model, args=training_args,
                       train_dataset=dataset['Train'], eval_dataset=dataset['Validation'])
