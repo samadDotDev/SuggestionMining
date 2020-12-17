@@ -12,8 +12,7 @@ than few of the SemEval-19 participating teams such as
 
 ### Advanced
 Our advanced approach uses Transfer Learning, utilizing pre-trained BERT model for feature extraction and internal
-representation learning. It performs better (F-1: 0.8448) than the best-performing team 
-`OleNet@Baidu (Jiaxiang et al., 2019)` on SubTask-A (F-1: 0.7812). We have re-trained the 
+representation learning. It ranks 6th among 32 teams, with F-1 score of 0.7487. We have re-trained the 
 [BertForSequenceClassification](https://huggingface.co/transformers/model_doc/bert.html#bertforsequenceclassification) 
 model for just 3 epochs without freezing weights in initial layers.
 
