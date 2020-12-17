@@ -167,7 +167,7 @@ def read_and_predict_sentiments(decision_list_file, test_file):
             
             # i. Split line in following pattern:
             # <Identifier: Numbers optionally with _>,<Review: remaining txt>,X
-            line_split = re.match(r'^([0-9_]*),"""(.*)""",X$', line)
+            line_split = re.match(r'^([0-9_]*),"(.*)",X$', line)
 
             # Group /1 has filename or review identifier, Group /2 has review text
             review_identifier = line_split.group(1)

@@ -18,19 +18,22 @@ fi
 
 # Define paths to dataset files
 trainFile="data/V1.4_Training.csv"
-valFile="data/SubtaskA_EvaluationData.csv"
-valFileLabelled="data/SubtaskA_EvaluationData_labeled.csv"
-testFile="data/SubtaskA_Trial_Test.csv"
-testFileLabelled="data/SubtaskA_Trial_Test_Labeled.csv"
+valFile="data/SubtaskA_Trial_Test.csv"
+valFileLabelled="data/SubtaskA_Trial_Test_Labeled.csv"
+testFile="data/SubtaskA_EvaluationData.csv"
+testFileLabelled="data/SubtaskA_EvaluationData_labeled.csv"
 
 # Config related to basic approach
 decisionsListFile="generated/decisions-list.txt"
 basicSystemAnswersFile="generated/basic-system-answers.txt"
 basicResultsFile="results/basic-results.txt"
+ngramConfig="34"
+minFrequency=1
+notFeature=1
 
 # Run basic experiment
 # Train
-python basic/train.py $trainFile > $decisionsListFile
+python basic/train.py $trainFile $ngramConfig $minFrequency $notFeature > $decisionsListFile
 # Test
 python basic/test.py $decisionsListFile $testFile > $basicSystemAnswersFile
 # Evaluate
@@ -43,11 +46,11 @@ advancedResultsFile="results/advanced-results.txt"
 
 # Run advanced experiment
 # Train
-python advanced/train.py $trainFile $valFileLabelled $modelExportDir
+#python advanced/train.py $trainFile $valFileLabelled $modelExportDir
 # Test
-python advanced/test.py $modelExportDir $testFile > $advancedSystemAnswersFile
+#python advanced/test.py $modelExportDir $testFile > $advancedSystemAnswersFile
 # Evaluate
-python advanced/eval.py $testFileLabelled $advancedSystemAnswersFile > $advancedResultsFile
+#python advanced/eval.py $testFileLabelled $advancedSystemAnswersFile > $advancedResultsFile
 
 # Print a summary
 printf "Basic " && head -1 $basicResultsFile

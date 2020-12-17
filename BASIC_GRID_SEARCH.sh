@@ -1,7 +1,7 @@
 # Define paths to dataset files
 trainFile="data/V1.4_Training.csv"
-testFile="data/SubtaskA_Trial_Test.csv"
-testFileLabelled="data/SubtaskA_Trial_Test_Labeled.csv"
+testFile="data/SubtaskA_EvaluationData.csv"
+testFileLabelled="data/SubtaskA_EvaluationData_labeled.csv"
 
 # Config related to files to be generated
 decisionsListFile="generated/decisions-list.txt"
@@ -10,7 +10,7 @@ basicResultsFile="generated/basic-grid-search-results.txt"
 
 printf "nGramConfig,minFrequency,notFeature,F1\n"
 
-for notFeature in "True" "False"
+for notFeature in 1 0
 do
   for ngramConfig in "1" "2" "3" "4" "12" "13" "14" "23" "24" "34" "123" "124" "234" "1234"
   do

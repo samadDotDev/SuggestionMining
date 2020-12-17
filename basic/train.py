@@ -109,7 +109,7 @@ def parse_cmd_line_args():
         minimum_frequency_of_feature = int(sys.argv[3])
 
     if len(sys.argv) >= 5:
-        not_feature_enabled = bool(sys.argv[4])
+        not_feature_enabled = bool(int(sys.argv[4]))
 
     return input_file_name
 
