@@ -1,0 +1,6 @@
+# A workaround to keep this directory in git repo, so it can be used for build artifacts without actually syncing the artifacts
+# https://stackoverflow.com/a/932982/3743430 (Accessed Dec 17, 2020)
+# Ignore everything in this directory
+*
+# Except this file
+!.gitignore

@@ -27,9 +27,9 @@ testFileLabelled="data/SubtaskA_EvaluationData_labeled.csv"
 decisionsListFile="generated/decisions-list.txt"
 basicSystemAnswersFile="generated/basic-system-answers.txt"
 basicResultsFile="results/basic-results.txt"
-ngramConfig="34"
-minFrequency=1
-notFeature=1
+ngramConfig="3"
+minFrequency=3
+notFeature=0
 
 # Run basic experiment
 # Train
@@ -40,13 +40,15 @@ python basic/test.py $decisionsListFile $testFile > $basicSystemAnswersFile
 python basic/eval.py $testFileLabelled $basicSystemAnswersFile > $basicResultsFile
 
 # Config related to advanced approach
+epochs=3
+freezeWeights=0
 modelExportDir="generated/model/"
 advancedSystemAnswersFile="generated/advanced-system-answers.txt"
-advancedResultsFile="results/advanced-results.txt"
+advancedResultsFile="results/advanced-results-freeze-${freezeWeights}-epochs-${epochs}.txt"
 
 # Run advanced experiment
 # Train
-python advanced/train.py $trainFile $valFileLabelled $modelExportDir
+python advanced/train.py $trainFile $valFileLabelled $modelExportDir $freezeWeights $epochs
 # Test
 python advanced/test.py $modelExportDir $testFile > $advancedSystemAnswersFile
 # Evaluate
