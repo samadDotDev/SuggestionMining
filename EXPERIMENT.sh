@@ -46,11 +46,11 @@ advancedResultsFile="results/advanced-results.txt"
 
 # Run advanced experiment
 # Train
-#python advanced/train.py $trainFile $valFileLabelled $modelExportDir
+python advanced/train.py $trainFile $valFileLabelled $modelExportDir
 # Test
-#python advanced/test.py $modelExportDir $testFile > $advancedSystemAnswersFile
+python advanced/test.py $modelExportDir $testFile > $advancedSystemAnswersFile
 # Evaluate
-#python advanced/eval.py $testFileLabelled $advancedSystemAnswersFile > $advancedResultsFile
+python advanced/eval.py $testFileLabelled $advancedSystemAnswersFile > $advancedResultsFile
 
 # Print a summary
 printf "Basic " && head -1 $basicResultsFile

@@ -105,7 +105,7 @@ def parse_cmd_line_args():
     global freeze_bert_weights, training_epochs, weight_decay
 
     if len(sys.argv) >= 5:
-        freeze_bert_weights = bool(sys.argv[4])
+        freeze_bert_weights = bool(int(sys.argv[4]))
     if len(sys.argv) >= 6:
         training_epochs = int(sys.argv[5])
     if len(sys.argv) >= 7:
@@ -136,7 +136,16 @@ def pre_process_input(train_file, val_file, tokenizer):
             # Iterate through each line in file
             for line in file:
 
-                line_split = re.match(r'^([0-9_]*),"""(.*)""",([01])$', line)
+                line_split = None
+
+                # Split line in following pattern (different for train and val set):
+                if dataset_title == 'Train':
+                    # TODO: Handle reviews with _ in their identifiers, group them for same id before _
+                    # <Review Number possibly with underscore> <,"""> <Review Text> <""",> <Class: 0 or 1>
+                    line_split = re.match(r'^([0-9_]*),"""(.*)""",([01])$', line)
+                else:
+                    # <Review Number possibly with underscore> <,"> <Review Text> <",> <Class: 0 or 1>
+                    line_split = re.match(r'^([0-9_]*),"?(.*)"?,([01])$', line)
 
                 if line_split is None:
                     # Skip this line if there is no pattern match
